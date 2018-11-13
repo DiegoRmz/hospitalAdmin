@@ -170,17 +170,15 @@ app.post('/doctor', function(req, res) {
 
     usuario.save((err, usuarioDB) => {
         if (err) {
-            return res.status(400).json({
+            /*return res.status(400).json({
                 ok: false,
                 mensaje: 'El nombre es necesario!',
                 err
-            })
+            })*/
+            res.render('signinDoctores',{message:"Hubo un error al guardar el doctor"})
         }
         //usuarioDB.password = null;
-        res.json({
-            ok: true,
-            usuario: usuarioDB
-        })
+        res.render('signinDoctores',{succ:"Se guardó el doctor exitosamente"})
     });
 })
 
