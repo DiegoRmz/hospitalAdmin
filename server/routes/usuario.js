@@ -5,8 +5,6 @@ const Doctor = require('../models/doctor');
 const Receta = require('../models/receta');
 const hbs = require('hbs');
 
-//require('./hbs/helpers');
-
 
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
@@ -185,7 +183,7 @@ app.post('/doctor', function(req, res) {
 //-->Registro receta:
 app.post('/receta', function(req, res) {
     let body = req.body;
-
+    
     let usuario = new Receta({
         nombrePaciente: body.nombrePaciente,
         nombreMedico: body.nombreMedico,
@@ -198,19 +196,22 @@ app.post('/receta', function(req, res) {
         cedula: body.cedula
     });
 
+    console.log(usuario);
+
+
     usuario.save((err, usuarioDB) => {
+        console.log(usuarioDB);
+        
         if (err) {
-            return res.status(400).json({
+            /*return res.status(400).json({
                 ok: false,
                 mensaje: 'El nombre es necesario!',
                 err
-            })
+            })*/
+            res.render('recetarPaciente',{message:"No se guardó la receta"})
         }
         //usuarioDB.password = null;
-        res.json({
-            ok: true,
-            usuario: usuarioDB
-        })
+        res.render('recetarPaciente',{succ:"Se guardó la receta"})
     });
 })
 
@@ -514,6 +515,10 @@ app.get('/usuario-desplegar', function(req, res) {
             usuarios
             })
         })
+})
+
+app.get('/paciente-recetar', (req,res)=>{
+    res.render('recetarPaciente')
 })
 
 module.exports = app;
