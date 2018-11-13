@@ -84,17 +84,10 @@ app.post('/usuario', function(req, res) {
 
     usuario.save((err, usuarioDB) => {
         if (err) {
-            return res.status(400).json({
-                ok: false,
-                mensaje: 'El nombre es necesario!',
-                err
-            })
+            res.render('signinAdministradores',{message:"Hubo un error al guardar el admin"})
         }
         //usuarioDB.password = null;
-        res.json({
-            ok: true,
-            usuario: usuarioDB
-        })
+        res.render('signinAdministradores',{succ:"Se guardó el admin exitosamente"})
     });
 })
 
@@ -158,13 +151,7 @@ app.post('/paciente', function(req, res) {
         if (err) {
             res.render('signinPacientes',{message:"Hubo un error al guardar el paciente"})
         }
-
         res.render('signinPacientes',{succ:"Se guardó el paciente exitosamente"})
-        //usuarioDB.password = null;
-        /*res.json({
-            ok: true,
-            usuario: usuarioDB
-        })*/
     });
 })
 
