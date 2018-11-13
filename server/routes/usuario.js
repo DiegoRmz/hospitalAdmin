@@ -156,17 +156,15 @@ app.post('/paciente', function(req, res) {
 
     usuario.save((err, usuarioDB) => {
         if (err) {
-            return res.status(400).json({
-                ok: false,
-                mensaje: 'El nombre es necesario!',
-                err
-            })
+            res.render('signinPacientes',{message:"Hubo un error al guardar el paciente"})
         }
+
+        res.render('signinPacientes',{succ:"Se guardó el paciente exitosamente"})
         //usuarioDB.password = null;
-        res.json({
+        /*res.json({
             ok: true,
             usuario: usuarioDB
-        })
+        })*/
     });
 })
 
@@ -307,21 +305,22 @@ app.post('/administrador-ingreso', function(req, res){
     Usuario.findOne({nombre:nombre}, (error, seleccionUsuario)=>{
 
         if(error){
-
-            res.status(500).send({message:"Todo enviado, pero error...."});
+            console.log(error);
+            //res.status(500).send({message:"Todo enviado, pero error...."});
+            res.render('loginAdministrador',{message:"Internal server error"});
         }
         else{
-
-            if(password == seleccionUsuario.password){
-
-                res.status(200).send({message:"Inicio de sesion correcto....."});
-
+            if(seleccionUsuario){
+                if(password == seleccionUsuario.password){
+                    //res.status(200).send({message:"Inicio de sesion correcto....."});
+                    res.render('menuAdmin')
+                }else{
+                    res.render('loginAdministrador',{message:"No existe el usuario o se equivocó de contraseña"});
+                    //res.status(404).send({message:"No encontrado...."});
+                }
             }else{
-
-                        
-                res.status(404).send({message:"No encontrado...."});
-                    
-                
+                res.render('loginAdministrador',{message:"No existe el usuario o se equivocó de contraseña"});
+                //res.status(404).send({message:"No encontrado...."});
             }
         }
     })
@@ -359,26 +358,21 @@ app.get('/administrador-ingreso', function(req, res){
 })
 //-->Login doctor:
 app.post('/doctor-ingreso', function(req, res){
-
     var parametros = req.body;
     var cedula = parametros.cedula;
 
     Doctor.findOne({cedula:cedula}, (error, seleccionUsuario)=>{
-
         if(error){
-
-            res.status(500).send({message:"Todo enviado, pero error...."});
+            //res.status(500).send({message:"Todo enviado, pero error...."});
+            res.render('loginDoctor',{message:"Hubo un error para procesar la petición"})
         }
         else{
-
             if(!seleccionUsuario){
-
-                res.status(404).send({message:"No encontrado...."});
-
+            //    res.status(404).send({message:"No encontrado...."});
+                res.render('loginDoctor',{message:"No se encontró su cédula"})
             }else{
-                    res.status(200).send({message:"Inicio de sesion correcto....."});
-                    //res.render('doctor');
-
+                res.status(200).send({message:"Inicio de sesion correcto....."});
+                //res.render('doctor');
             }
         }
     })
@@ -386,28 +380,19 @@ app.post('/doctor-ingreso', function(req, res){
 
 //-->Login paciente:
 app.post('/paciente-ingreso', function(req, res){
-
     var parametros = req.body;
     var nss = parametros.nss;
     //var password = parametros.password;
-
     Paciente.findOne({nss:nss}, (error, seleccionUsuario)=>{
-
         if(error){
-
-            res.status(500).send({message:"Todo enviado, pero error...."});
+            res.render('loginPaciente',{message:"Hubo un error para procesar la petición"})
         }
         else{
-
             if(!seleccionUsuario){
-
-                res.status(404).send({message:"No encontrado...."});
-
+                //res.status(404).send({message:"No encontrado...."});
+                res.render('loginPaciente',{message:"No se encontró su N.S.S"})
             }else{
-
-                    res.status(200).send({message:"Inicio de sesion correcto....."});
-                    
-
+                res.status(200).send({message:"Inicio de sesion correcto....."});
             }
         }
     })

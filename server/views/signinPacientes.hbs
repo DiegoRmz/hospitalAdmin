@@ -1,26 +1,48 @@
-<section id="login">
+<head>
+    <title>Home</title>
 
-  <form class="formLog" action="http://localhost:3000/paciente" method = "post">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+		<br>
+		<h1>Registro de pacientes</h1>
+		<hr>
+       <div class="row">
+		<div class="col-12">
+			<form action="http://localhost:3000/paciente" method = "post">
+				<div class="form-group">
+					<label>Nombre del paciente</label>
+					<input class="form-control" type="text" placeholder="nombre" name="nombre"  required>
+				</div>
+				<div class="form-group">
+					<label>Apellido del paciente</label>
+    				<input class="form-control" type="text" placeholder="apellido" name="apellido" required>
+				</div>
+				<div class="form-group">
+					<label>Numero de seguro social</label>
+    				<input class="form-control" type="text" placeholder="No. Seguro" name="nss" required>				
+				</div>
+				<div class="form-group">
+					<label>Póliza de seguro</label>
+    				<input class="form-control" type="text" placeholder="Poliza de Seguro" name="poliza"  required>
+				</div>
+				<div class="form-check">
+    				<input type="submit" name="Guardar" class="btn btn-primary">
+          		</div>
+			</form>
+			{{#if message}}
+            	<span class="alert alert-danger">{{message}}</span>
+          	{{/if}}
 
-    <h1>Registro de Pacientes</h1>
-    <a class="signInTitle" [routerLink]="['/logInDoctor']"><h2 class="titleSign">Login</h2></a>
-
-    <!--<span *ngIf="usuario.touched && !usuario.valid" [ngStyle]="{'color':'red', 'font-size':'14px', 'margin':'20px'}">*LLenar bien</span>-->
-    <input class="btn-frontend-input-signin" type="text" placeholder="nombre" name="nombre"  required>
-
-    <input class="btn-frontend-input-signin" type="text" placeholder="apellido" name="apellido" required>
-
-    <input class="btn-frontend-input-signin" type="text" placeholder="No. Seguro" name="nss" required>
-
-    <input class="btn-frontend-input-signin" type="text" placeholder="Poliza de Seguro" name="poliza"  required>
-
-    <!--<span *ngIf="password.touched && !password.valid" [ngStyle]="{'color':'red', 'font-size':'14px', 'margin':'20px'}">*LLenar bien</span>-->
-    <div class="btnLogin">
-      <input type="submit" name="Enviar" class="btn-frontend-signin">
+			{{#if succ}}
+            	<span class="alert alert-success">{{succ}}</span>
+          	{{/if}}
+          	<br><br>
+		</div>
+	   </div>
     </div>
-
-  </form>
-
-
-
-</section>
+</body>
