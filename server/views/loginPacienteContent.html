@@ -1,0 +1,31 @@
+<section *ngIf="!identificado" id="login">
+
+  <form #formIngreso="ngForm" (ngSubmit)="onSubmit()" class="formLog">
+
+    <h1 class="logTit">LOGIN PACIENTE</h1>
+    <a class="signInTitle" [routerLink]="['/logInDoctor']"><h2 class="titleSign">Doctor</h2></a>
+    <a class="signInTitle" [routerLink]="['/logInPaciente']"><h2 class="titleSign">Paciente</h2></a>
+    <a class="signInTitle" [routerLink]="['/logInAdmi']"><h2 class="titleSign">Admi</h2>
+    </a>
+
+    <!--<span *ngIf="usuario.touched && !usuario.valid" [ngStyle]="{'color':'red', 'font-size':'14px', 'margin':'20px'}">*LLenar bien</span>-->
+    <input class="btn-frontend-input-login" type="text" placeholder="Numero del seguro social" name="seguro" #seguro="ngModel" [(ngModel)]="listaUsuarios.seguro" autocomplete="username" required>
+
+    <!--<span *ngIf="password.touched && !password.valid" [ngStyle]="{'color':'red', 'font-size':'14px', 'margin':'20px'}">*LLenar bien</span>-->
+    <div class="btnLogin">
+      <input type="submit" name="Enviar" class="btn-frontend-login">
+    </div>
+
+    <div *ngIf="validarIngreso">
+
+      <div class="responseLogin">{{mensaje}}</div>
+
+    </div>
+
+
+
+  </form>
+
+
+
+</section>

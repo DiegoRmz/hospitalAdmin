@@ -1,0 +1,33 @@
+<section id="login">
+
+  <form class="formLog">
+
+    <h1>Recetar paciente</h1>
+    <a class="signInTitle" [routerLink]="['/logInDoctor']"><h2 class="titleSign">Login Doctor</h2></a>
+
+    <!--<span *ngIf="usuario.touched && !usuario.valid" [ngStyle]="{'color':'red', 'font-size':'14px', 'margin':'20px'}">*LLenar bien</span>-->
+    <input class="btn-frontend-input-signin" type="text" placeholder="No. de Seguro Paciente" name="paciente"  disabled>
+    <input class="btn-frontend-input-signin" type="text" placeholder="Doctor" name="doctor"  disabled>
+    <input class="btn-frontend-input-signin" type="text" placeholder="Ultimo tratamiento" name="lastTratamiento"  disabled>
+
+    <input class="btn-frontend-input-signin" type="text" placeholder="Padecmiento" name="padecimiento"  >
+
+    <input class="btn-frontend-input-signin" type="text" placeholder="Diagnostico" name="diagnostico"  >
+
+    <input class="btn-frontend-input-signin" type="text" placeholder="Tratamiento" name="tratamiento"  >
+
+    <input class="btn-frontend-input-signin" type="text" placeholder="Analisis" name="analisis"  >
+
+    <input class="btn-frontend-input-signin" type="text" placeholder="Resultados" name="resultado"  >
+
+    <input class="btn-frontend-input-signin" type="text" placeholder="Cedula" name="cedula"  disabled>
+
+    <!--<span *ngIf="password.touched && !password.valid" [ngStyle]="{'color':'red', 'font-size':'14px', 'margin':'20px'}">*LLenar bien</span>-->
+    <div class="btnsignin">
+      <input type="submit" value=" Guardar e Imprimir " name="historial" class="btn-frontend-signin">
+
+    </div>
+
+  </form>
+
+</section>
