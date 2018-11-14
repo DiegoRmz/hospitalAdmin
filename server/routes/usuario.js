@@ -357,8 +357,8 @@ app.post('/doctor-ingreso', function(req, res){
             //    res.status(404).send({message:"No encontrado...."});
                 res.render('loginDoctor',{message:"No se encontró su cédula"})
             }else{
-                res.status(200).send({message:"Inicio de sesion correcto....."});
-                //res.render('doctor');
+                //res.status(200).send({message:"Inicio de sesion correcto....."});
+                res.render('recetarPaciente');
             }
         }
     })
